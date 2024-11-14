@@ -1,24 +1,22 @@
 import java.util.Scanner;
 
 public class Main {
-    private static String newModel;
-    private static int newEnginePower;
-    private static int newMass;
-    private static CarType newCarType;
+
     public static void main(String[] args) {
         System.out.println("Build new Car");
         Scanner in = new Scanner(System.in);
+
         System.out.println("Enter the model name of new Car");
         String modelInput = in.nextLine();
-        setNewModel(modelInput);
 
         System.out.println("Enter the type of car");
         System.out.println("Enter 1 - for Sedan, 2 - for GT, 3 - for AllRoad");
 
+        CarType newCarType;
         while (true) {
             int typeInput = in.nextInt();
             if (typeInput >= 1 && typeInput <= 3) {
-                setCarType(typeInput);
+                newCarType = setCarType(typeInput);
                 break;
             } else {
                 System.out.println("Error: Please enter only numbers 1 or 2 or 3");
@@ -27,44 +25,33 @@ public class Main {
 
         System.out.println("Enter the power of engine (kW)");
         int enginePowerInput = in.nextInt();
-        setNewEnginePower(enginePowerInput);
 
         System.out.println("Enter the mass of the car (kg)");
         int massInput = in.nextInt();
-        setNewMass(massInput);
 
-        Car currentCar = new Car(newModel, newEnginePower, newMass, newCarType);
-        String currentCarData = currentCar.toString();
-        System.out.println("Created new " + currentCarData);
+        Car currentCar = new Car(modelInput, enginePowerInput, massInput, newCarType);
+        //System.out.println("Created new " + currentCar);
+
+        currentCarDrive(currentCar);
 
     }
 
-    public static void setCarType(int input) {
-        if (input == 1) {
-            newCarType = CarType.SEDAN;
-        } else if (input == 2) {
-            newCarType = CarType.GT;
-        } else if (input == 3) {
-            newCarType = CarType.PICK_UP;
-        } else {
-            throw new RuntimeException("Wrong number of CarType");
-        }
+    public static CarType setCarType(int input) {
+        return switch (input) {
+            case 1 -> CarType.SEDAN;
+            case 2 -> CarType.GT;
+            case 3 -> CarType.PICK_UP;
+            default -> throw new RuntimeException("Wrong number of CarType");
+        };
     }
 
-    public static void setNewModel(String input) {
-        newModel = input;
+    public static void currentCarDrive(Car currentCar) {
+        System.out.println(currentCar);
+        System.out.println(currentCar.engine.getEnginePower()); //Проблема здесь не видит enginePower
+        currentCar.engine.startEngine();
+        currentCar.driveCar();
+        currentCar.rudder.turnLeft();
+        currentCar.rudder.turnRight();
+        currentCar.engine.stopEngine();
     }
-
-    public static void setNewEnginePower(int input) {
-        newEnginePower = input;
-    }
-
-    public static void setNewMass(int input) {
-        newMass = input;
-    }
-
-
-
-
-
 }

@@ -14,7 +14,7 @@ public class Car {
     Engine engine = new Engine(enginePower);
     Rudder rudder = new Rudder();
 
-    public void runCar() {
+    public void driveCar() {
         if (engine.isStarted()) {
             System.out.println("Yes, we run");
         } else {
@@ -42,9 +42,11 @@ public class Car {
     @Override
     public String toString() {
         return "Car: " +
-                "model='" + model + '\'' +
-                ", enginePower=" + enginePower +
-                ", mass=" + mass +
-                ", carType=" + carType;
+                "model= '" + model + '\'' +
+                ", enginePower= " + enginePower +
+                ", mass= " + mass +
+                ", carType= " + carType +
+                ", rudderSize= " + rudder.getSize() +
+                "sm";
     }
 }

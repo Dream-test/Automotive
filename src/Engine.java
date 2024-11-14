@@ -27,4 +27,8 @@ public class Engine {
     public boolean isStarted() {
         return isStarted;
     }
+
+    public int getEnginePower() {
+        return enginePower;
+    }
 }
