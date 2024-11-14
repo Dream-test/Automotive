@@ -3,16 +3,16 @@ public class Car {
    private int enginePower;
    private int mass;
    private CarType carType;
+   private Engine engine;
+   private Rudder rudder = new Rudder();
 
     public Car(String model, int enginePower, int mass, CarType carType) {
         this.model = model;
         this.enginePower = enginePower;
         this.mass = mass;
         this.carType = carType;
+        this.engine = new Engine(enginePower);
     }
-
-    Engine engine = new Engine(enginePower);
-    Rudder rudder = new Rudder();
 
     public void driveCar() {
         if (engine.isStarted()) {
@@ -37,6 +37,18 @@ public class Car {
 
     public CarType getCarType() {
         return carType;
+    }
+
+    public int getEnginePower() {
+        return enginePower;
+    }
+
+    public Engine getEngine() {
+        return engine;
+    }
+
+    public Rudder getRudder() {
+        return rudder;
     }
 
     @Override

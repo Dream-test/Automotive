@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+
         System.out.println("Build new Car");
         Scanner in = new Scanner(System.in);
 
@@ -47,11 +48,10 @@ public class Main {
 
     public static void currentCarDrive(Car currentCar) {
         System.out.println(currentCar);
-        System.out.println(currentCar.engine.getEnginePower()); //Проблема здесь не видит enginePower
-        currentCar.engine.startEngine();
+        currentCar.getEngine().startEngine();
         currentCar.driveCar();
-        currentCar.rudder.turnLeft();
-        currentCar.rudder.turnRight();
-        currentCar.engine.stopEngine();
+        currentCar.getRudder().turnLeft();
+        currentCar.getRudder().turnRight();
+        currentCar.getEngine().stopEngine();
     }
 }
