@@ -1,5 +1,5 @@
 public class Engine {
-    private int enginePower;
+    private final int enginePower;
     private boolean isStarted = false;
 
 
@@ -27,9 +27,5 @@ public class Engine {
 
     public boolean isStarted() {
         return isStarted;
-    }
-
-    public int getEnginePower() {
-        return enginePower;
     }
 }

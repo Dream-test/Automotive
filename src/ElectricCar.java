@@ -10,18 +10,14 @@ public class ElectricCar extends Car implements Drivable {
             getRudder().turnLeft();
     }
 
-    public void carStartEngine() {}
-
-    public void carStopEngine() {}
-
-    /* public void driveCar() {
-        if (engine.isStarted()) {
-            System.out.println("Yes, we run");
-        } else {
-            System.out.println("The first, please, start engine");
-        }
+    @Override
+    public String toString() {
+        return "Electric Car: " +
+                "model= '" + getModel() + '\'' +
+                ", enginePower= " + getEnginePower() +
+                ", mass= " + getMass() +
+                ", carType= " + getCarType() +
+                ", rudderSize= " + getRudder().getSize() +
+                "sm";
     }
-    */
-
-
 }
