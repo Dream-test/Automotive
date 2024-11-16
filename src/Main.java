@@ -7,6 +7,21 @@ public class Main {
         System.out.println("Build new Car");
         Scanner in = new Scanner(System.in);
 
+        System.out.println("What type of engine you want?");
+        System.out.println("Enter 1 - for Combustion, 2 - for Electric");
+        int typeEngine;
+        while (true) {
+            int typeInput = in.nextInt();
+            if (typeInput >= 1 && typeInput <= 2) {
+                typeEngine = typeInput;
+                break;
+            } else {
+                System.out.println("Error: Please enter only numbers 1 or 2 or 3");
+            }
+        }
+        Car currentCar;
+
+        in.nextLine();
         System.out.println("Enter the model name of new Car");
         String modelInput = in.nextLine();
 
@@ -30,10 +45,31 @@ public class Main {
         System.out.println("Enter the mass of the car (kg)");
         int massInput = in.nextInt();
 
-        Car currentCar = new Car(modelInput, enginePowerInput, massInput, newCarType);
-        //System.out.println("Created new " + currentCar);
+        if (typeEngine == 1) {
+            currentCar = new CombustionCar(modelInput, enginePowerInput, massInput, newCarType);
+        } else {
+            System.out.println("Enter the size of steering wheel (sm)");
+            int newRudderSize = in.nextInt();
+            currentCar =new ElectricCar(modelInput, enginePowerInput, massInput, newCarType, newRudderSize);
 
-        currentCarDrive(currentCar);
+        }
+
+        switch (typeEngine) {
+            case 1 -> currentCombustionCarDrive(currentCar);
+            case 2 -> currentElectricCarDrive(currentCar);
+            default -> throw new RuntimeException("Wrong number of Engine Type");
+        };
+
+        in.close();
+
+        System.out.println("---------------------------------------------------------------------------");
+        Drivable newCombustionCar = new CombustionCar(modelInput, enginePowerInput, massInput, newCarType);
+        newCombustionCar.carStartEngine();
+        newCombustionCar.driveCar();
+        newCombustionCar.carStopEngine();
+        System.out.println("---------------------------------------------------------------------------");
+        Drivable newElectricCar = new ElectricCar(modelInput, enginePowerInput, massInput, newCarType, 60);
+        newElectricCar.driveCar();
 
     }
 
@@ -46,12 +82,15 @@ public class Main {
         };
     }
 
-    public static void currentCarDrive(Car currentCar) {
+    public static void currentCombustionCarDrive(Car currentCar) {
         System.out.println(currentCar);
         currentCar.getEngine().startEngine();
         currentCar.driveCar();
-        currentCar.getRudder().turnLeft();
-        currentCar.getRudder().turnRight();
         currentCar.getEngine().stopEngine();
+    }
+
+    public static void currentElectricCarDrive(Car currentCar) {
+        System.out.println(currentCar);
+        currentCar.driveCar();
     }
 }

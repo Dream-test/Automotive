@@ -1,4 +1,4 @@
-public class Car {
+public abstract class Car {
    private String model;
    private int enginePower;
    private int mass;
@@ -17,10 +17,11 @@ public class Car {
     public void driveCar() {
         if (engine.isStarted()) {
             System.out.println("Yes, we run");
+            getRudder().turnLeft();
+            getRudder().turnRight();
         } else {
             System.out.println("The first, please, start engine");
         }
-
     }
 
     public String getModel() {

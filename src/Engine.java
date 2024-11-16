@@ -19,6 +19,7 @@ public class Engine {
     public void stopEngine() {
         if (isStarted) {
             System.out.println("Engine " + enginePower + "PS is stopped");
+            isStarted = false;
         } else {
             System.out.println("Engine isn't started");
         }
