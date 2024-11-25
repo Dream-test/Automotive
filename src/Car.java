@@ -1,10 +1,10 @@
 public abstract class Car {
-   private String model;
-   private int enginePower;
-   private int mass;
-   private CarType carType;
-   private Engine engine;
-   private Rudder rudder = new Rudder();
+   private final String model;
+   private final int enginePower;
+   private final int mass;
+   private final CarType carType;
+   private final Engine engine;
+   private final Rudder rudder = new Rudder();
 
     public Car(String model, int enginePower, int mass, CarType carType) {
         this.model = model;
@@ -26,10 +26,6 @@ public abstract class Car {
 
     public String getModel() {
         return model;
-    }
-
-    public int getPower() {
-        return enginePower;
     }
 
     public int getMass() {

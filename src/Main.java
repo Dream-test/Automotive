@@ -19,7 +19,7 @@ public class Main {
                 System.out.println("Error: Please enter only numbers 1 or 2 or 3");
             }
         }
-        Car currentCar;
+        Drivable currentCar;
 
         in.nextLine();
         System.out.println("Enter the model name of new Car");
@@ -54,23 +54,8 @@ public class Main {
 
         }
 
-        switch (typeEngine) {
-            case 1 -> currentCombustionCarDrive(currentCar);
-            case 2 -> currentElectricCarDrive(currentCar);
-            default -> throw new RuntimeException("Wrong number of Engine Type");
-        };
-
         in.close();
-
-        System.out.println("---------------------------------------------------------------------------");
-        Drivable newCombustionCar = new CombustionCar(modelInput, enginePowerInput, massInput, newCarType);
-        newCombustionCar.carStartEngine();
-        newCombustionCar.driveCar();
-        newCombustionCar.carStopEngine();
-        System.out.println("---------------------------------------------------------------------------");
-        Drivable newElectricCar = new ElectricCar(modelInput, enginePowerInput, massInput, newCarType, 60);
-        newElectricCar.driveCar();
-
+        currentCarDrive(currentCar);
     }
 
     public static CarType setCarType(int input) {
@@ -82,14 +67,7 @@ public class Main {
         };
     }
 
-    public static void currentCombustionCarDrive(Car currentCar) {
-        System.out.println(currentCar);
-        currentCar.getEngine().startEngine();
-        currentCar.driveCar();
-        currentCar.getEngine().stopEngine();
-    }
-
-    public static void currentElectricCarDrive(Car currentCar) {
+    public static void currentCarDrive(Drivable currentCar) {
         System.out.println(currentCar);
         currentCar.driveCar();
     }
